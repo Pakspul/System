@@ -3,6 +3,7 @@
 declare (strict_types = 1);
 
 use PHPUnit\Framework\TestCase;
+use System\StringEx;
 
 final class StringExTest extends TestCase
 {
@@ -12,7 +13,7 @@ final class StringExTest extends TestCase
         $input = "Hello world";
 
         // Act
-        $result = \System\StringEx::Length($input);
+        $result = StringEx::Length($input);
 
         // Assert
         $this->assertEquals(11, $result);
