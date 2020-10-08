@@ -1,0 +1,24 @@
+{
+    "name": "pakspul/system",
+    "description": "My first composer package",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Pakspul",
+            "email": "pakspul@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-0": {
+            "System": "src/"
+        }
+    },
+	"repositories": [
+		{
+			"type": "vcs",
+			"url":  "https://github.com/Pakspul/System.git"
+		}
+	]
+}
