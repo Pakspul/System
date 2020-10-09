@@ -47,6 +47,69 @@ final class StringExTest extends TestCase
     }
 
     /**
+     * String::IsNullOrWhiteSpace tests
+     */
+    public function testIsNullOrWhiteSpaceWithNull()
+    {
+        // Arrange
+        $value = null;
+
+        // Act
+        $result = StringEx::IsNullOrWhiteSpace($value);
+
+        // Assert
+        $this->assertTrue($result);
+    }
+
+    public function testIsNullOrWhiteSpaceWithEmptyString()
+    {
+        // Arrange
+        $value = "";
+
+        // Act
+        $result = StringEx::IsNullOrWhiteSpace($value);
+
+        // Assert
+        $this->assertTrue($result);
+    }
+
+    public function testIsNullOrWhiteSpaceWithSpaceString()
+    {
+        // Arrange
+        $value = " ";
+
+        // Act
+        $result = StringEx::IsNullOrWhiteSpace($value);
+
+        // Assert
+        $this->assertTrue($result);
+    }
+
+    public function testIsNullOrWhiteSpaceWithWhiteSpaceFilledString()
+    {
+        // Arrange
+        $value = " \t \r \n \f \v ";
+
+        // Act
+        $result = StringEx::IsNullOrWhiteSpace($value);
+
+        // Assert
+        $this->assertTrue($result);
+    }
+
+    public function testIsNullOrWhiteSpaceWithSpacePaddedString()
+    {
+        // Arrange
+        $value = " ABCDE ";
+
+        // Act
+        $result = StringEx::IsNullOrWhiteSpace($value);
+
+        // Assert
+        $this->assertFalse($result);
+    }
+
+    /**
      * String::Length tests
      */
     public function testHelloWorldStringToHaveLengthOfEleven(): void
@@ -59,5 +122,32 @@ final class StringExTest extends TestCase
 
         // Assert
         $this->assertEquals(11, $result);
+    }
+
+    /**
+     * String::Trim tests
+     */
+    public function testTrimStringWithOnlyASpace()
+    {
+        // Arrange
+        $value = " ";
+
+        // Act
+        $result = StringEx::Trim($value);
+
+        // Assert
+        $this->assertEmpty($result);
+    }
+
+    public function testTrimSpacedPaddedString()
+    {
+        // Arrange
+        $value = " ABC ";
+
+        // Act
+        $result = StringEx::Trim($value);
+
+        // Assert
+        $this->assertEquals("ABC", $result);
     }
 }
