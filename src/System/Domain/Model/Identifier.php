@@ -1,6 +1,6 @@
 <?php
 
-namespace System\Domain;
+namespace System\Domain\Model;
 
 use System\Guid;
 
