@@ -2,7 +2,7 @@
 
 namespace System\Domain\Exception;
 
-class FailedToFulfillPolicyException extends \Exception
+class FailedToFulfillPolicyException extends DomainException
 {
 
 }
