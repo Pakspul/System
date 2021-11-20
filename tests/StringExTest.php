@@ -150,4 +150,28 @@ final class StringExTest extends TestCase
         // Assert
         $this->assertEquals("ABC", $result);
     }
+
+    public function testConvertToLowercase()
+    {
+        // Arrange
+        $value = "ABC";
+
+        // Act
+        $result = StringEx::ToLower($value);
+
+        // Assert
+        $this->assertEquals("abc", $result);
+    }
+
+    public function testConvertToUppercase()
+    {
+        // Arrange
+        $value = "abc";
+
+        // Act
+        $result = StringEx::ToUpper($value);
+
+        // Assert
+        $this->assertEquals("ABC", $result);
+    }
 }

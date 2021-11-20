@@ -49,4 +49,14 @@ final class StringEx
     {
         return rtrim($value);
     }
+
+    public static function ToLower(string $value): string
+    {
+        return strtolower($value);
+    }
+
+    public static function ToUpper(string $value): string
+    {
+        return strtoupper($value);
+    }
 }
