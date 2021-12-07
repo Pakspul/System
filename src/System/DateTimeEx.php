@@ -7,10 +7,6 @@ final class DateTimeEx
     const ISO8601_DATE = 'Y-m-d';
     const ISO8601_DATETIME = 'Y-m-d\TH:i:sO';
 
-    private function __construct()
-    {
-    }
-
     public static function toUtc(\DateTime $dt, string $format): string
     {
         $dt->setTimezone(new \DateTimeZone("UTC"));

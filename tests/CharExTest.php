@@ -118,4 +118,17 @@ class CharExTest extends TestCase
         // Assert
         $this->assertFalse($result);
     }
+
+    public function testCharWithLengthLargerThenOne()
+    {
+        // Assert
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Char may not be longer than one character.');
+
+        // Arrange
+        $value = "ab";
+
+        // Act
+        CharEx::IsWhiteSpace($value);
+    }
 }

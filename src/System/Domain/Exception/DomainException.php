@@ -2,6 +2,8 @@
 
 namespace System\Domain\Exception;
 
+use System\Result;
+
 class DomainException extends \Exception
 {
     private $key;
@@ -16,5 +18,10 @@ class DomainException extends \Exception
     public function getKey(): string
     {
         return $this->key;
+    }
+
+    public static function createFromResult(Result $result): DomainException
+    {
+        return new DomainException($result->getErrorKey(), $result->getErrorMessage());
     }
 }

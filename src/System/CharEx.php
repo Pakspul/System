@@ -4,10 +4,6 @@ namespace System;
 
 final class CharEx
 {
-    private function __construct()
-    {
-    }
-
     // https://referencesource.microsoft.com/#mscorlib/system/char.cs,33d30f343eda0003
     // mist nog twee...
     public static function IsWhiteSpace(string $char)
@@ -16,8 +12,9 @@ final class CharEx
             throw new \Exception("Char may not be longer than one character.");
         }
 
-        if ($char === ' ' || (ord($char) >= 9 && ord($char) <= 13))
+        if ($char === ' ' || (ord($char) >= 9 && ord($char) <= 13)) {
             return true;
+        }
 
         return false;
     }

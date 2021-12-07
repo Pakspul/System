@@ -47,9 +47,11 @@ class EnumTest extends TestCase
 
     public function testConstructorWithExistingValueButWithWrongCaseStrictChecking()
     {
+        // Assert
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage('value is outside the range of the underlying type of enumType.');
 
+        // Act
         new State("sTaRtEd");
     }
 
@@ -94,7 +96,7 @@ class EnumTest extends TestCase
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage('value is outside the range of the underlying type of enumType.');
 
-        $state = State::parse("STOPPED");
+        State::parse("STOPPED");
     }
 
     public function testCallStatic()
@@ -112,5 +114,26 @@ class EnumTest extends TestCase
         $this->assertEquals(StateWithValues::class, get_class($state));
         $this->assertEquals("STARTED", $state->getKey());
         $this->assertEquals(StateWithValues::STARTED, $state->getValue());
+    }
+
+    public function testCallStaticWithNonExistingValue()
+    {
+        // Assert
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('value is outside the range of the underlying type of enumType.');
+
+        $state = State::STOPPED();
+
+        $this->assertEquals(State::class, get_class($state));
+        $this->assertEquals("STARTED", $state->getValue());
+    }
+
+    public function testToStringMethod()
+    {
+        // Assert
+        $state = State::STARTED();
+
+        // Assert
+        $this->assertEquals("STARTED", (string) $state);
     }
 }

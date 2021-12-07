@@ -1,6 +1,6 @@
 <?php
 
-namespace System\Domain\Model;
+namespace System\Domain;
 
 abstract class Entity
 {
