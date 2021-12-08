@@ -25,12 +25,12 @@ class NegativeNumber extends Number
 
     private $value;
 
-    private function __construct(int $value)
+    private function __construct(float $value)
     {
         $this->value = $value;
     }
 
-    public function getValue(): int
+    public function getValue(): float
     {
         return $this->value;
     }
