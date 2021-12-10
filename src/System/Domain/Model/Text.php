@@ -9,10 +9,6 @@ class Text extends ValueObject
 {
     public static function create(string $value)
     {
-        if (StringEx::IsNullOrWhiteSpace($value)) {
-            throw new \Exception("Text may not be empty or only contain whitespaces.");
-        }
-
         $value = StringEx::Trim($value);
 
         return new Text($value);
@@ -25,7 +21,7 @@ class Text extends ValueObject
         $this->value = $value;
     }
 
-    public function getValue()
+    public function getValue(): string
     {
         return $this->value;
     }
