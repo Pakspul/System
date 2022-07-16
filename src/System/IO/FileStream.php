@@ -12,7 +12,7 @@ class FileStream extends Stream
     {
         return $this->fi->getLength();
     }
-    
+
     public function __construct(string $path, FileMode $mode)
     {
         $this->path = $path;
@@ -25,12 +25,13 @@ class FileStream extends Stream
         }
 
         $innerMode = null;
-        switch($mode) {
-            case FileMode::OPEN(): $innerMode = "r"; break;
-            case FileMode::CREATE(): $innerMode = "w"; break;
-            default: throw new \Exception();
+        switch ($mode) {
+            case FileMode::OPEN(): $innerMode = "r";
+                break;
+            case FileMode::CREATE(): $innerMode = "w";
+                break;
+            default:throw new \Exception();
         }
-        
 
         $result = \fopen($path, $innerMode);
         if (!$result) {
@@ -49,7 +50,10 @@ class FileStream extends Stream
     public function write(string $data, int $length = null)
     {
         // todo, iets doen met de position?
-        fwrite($this->resource, $data, $length);
+        $result = fwrite($this->resource, $data, $length);
+        if ($result === false) {
+            throw new IOException("Could not write file.");
+        }
     }
 
     public function seek(int $offset, $loc = 0)
