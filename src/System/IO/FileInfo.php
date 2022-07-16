@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace System\IO;
 
@@ -52,7 +52,7 @@ final class FileInfo
     {
         return substr($this->fullPath, strrpos($this->fullPath, '.') + 1, strlen($this->fullPath));
     }
-    
+
     public function getDirectoryName(): string
     {
         return substr($this->fullPath, 0, strrpos($this->fullPath, DIRECTORY_SEPARATOR));
@@ -83,19 +83,20 @@ final class FileInfo
         $this->originalPath = $filename;
 
         // todo, fix relative paths
-        if($this->isAbsolutePath($filename)) {
+        if ($this->isAbsolutePath($filename)) {
             $this->fullPath = $filename;
         } else {
-            $this->fullPath = \getcwd() . DIRECTORY_SEPERATOR . $filename;
+            $this->fullPath = \getcwd() . DIRECTORY_SEPARATOR . $filename;
         }
     }
 
     // helper(s)
-    private function isAbsolutePath(string $path) {
+    private function isAbsolutePath(string $path)
+    {
         if (!ctype_print($path)) {
-           throw new \DomainException("Path can NOT have non-printable characters or be empty.");
+            throw new \DomainException("Path can NOT have non-printable characters or be empty.");
         }
-        
+
         // Optional wrapper(s).
         $regExp = '%^(?<wrappers>(?:[[:print:]]{2,}://)*)';
         // Optional root prefix.
