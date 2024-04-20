@@ -15,11 +15,11 @@ class DateTimeExTest extends TestCase
     public function testParseValidDateTimeString()
     {
         // Assert
-        $now = new \DateTime(date(\System\DateTimeEx::ISO8601_DATETIME));
-        $string = $now->format(\System\DateTimeEx::ISO8601_DATETIME);
+        $now = new \DateTime(date(\System\DateTimeEx::ISO8601_DATETIME_SECONDS));
+        $string = $now->format(\System\DateTimeEx::ISO8601_DATETIME_SECONDS);
 
         // Act
-        $dt = DateTimeEx::parse($string, DateTimeEx::ISO8601_DATETIME);
+        $dt = DateTimeEx::parse($string, DateTimeEx::ISO8601_DATETIME_SECONDS);
 
         // Arrange
         $this->assertEquals($now, $dt);
@@ -35,20 +35,44 @@ class DateTimeExTest extends TestCase
         $string = "invalid string";
 
         // Act
-        DateTimeEx::parse($string, DateTimeEx::ISO8601_DATETIME);
+        DateTimeEx::parse($string, DateTimeEx::ISO8601_DATETIME_SECONDS);
     }
 
     public function testParseUtcToEuropeAmsterdamTimezone()
     {
         // Assert
-        $now = new \DateTime(date(\System\DateTimeEx::ISO8601_DATETIME));
+        $now = new \DateTime(date(\System\DateTimeEx::ISO8601_DATETIME_SECONDS));
         $now->setTimezone(new \DateTimeZone("UTC"));
-        $string = $now->format(\System\DateTimeEx::ISO8601_DATETIME);
+        $string = $now->format(\System\DateTimeEx::ISO8601_DATETIME_SECONDS);
 
         // Act
-        $dt = DateTimeEx::parse($string, DateTimeEx::ISO8601_DATETIME, DateTimeZoneEx::EUROPE_AMSTERDAM());
+        $dt = DateTimeEx::parse($string, DateTimeEx::ISO8601_DATETIME_SECONDS, DateTimeZoneEx::EUROPE_AMSTERDAM());
 
         // Assert
         $this->assertEquals("Europe/Amsterdam", $dt->getTimezone()->getName());
+    }
+
+    public function testToUtcWithMillisecondFormat()
+    {
+        // Assert
+        $dt = new \DateTime("2024-01-01 12:34:56.123456");
+
+        // Act
+        $formatted = $dt->format(\System\DateTimeEx::ISO8601_DATETIME_MILLISECONDS);
+
+        // Arrange
+        $this->assertEquals("2024-01-01T12:34:56.123+0100", $formatted);
+    }
+
+    public function testToUtcWithMicrosecondFormat()
+    {
+        // Assert
+        $dt = new \DateTime("2024-01-01 12:34:56.123456");
+
+        // Act
+        $formatted = $dt->format(\System\DateTimeEx::ISO8601_DATETIME_MICROSECONDS);
+
+        // Arrange
+        $this->assertEquals("2024-01-01T12:34:56.123456+0100", $formatted);
     }
 }
