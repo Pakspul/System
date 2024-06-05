@@ -93,6 +93,10 @@ final class FileInfo
     // helper(s)
     private function isAbsolutePath(string $path)
     {
+        // temporary disabled.
+        return true;
+
+        // refactor below code, é was the reason for disabling.
         if (!ctype_print($path)) {
             throw new \DomainException("Path can NOT have non-printable characters or be empty.");
         }
